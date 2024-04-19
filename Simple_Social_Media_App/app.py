@@ -16,59 +16,80 @@ def show_options(*texts):
     print(f'{index+1}. {text}')  
   choice = input("Enter your choice: ")
   return choice  
-def app():
-  print("=" * 50)
-  print("Welcome to Simple Social Media App!")
-  print("Which one options below: ")
-  print("-" * 50)
-  opt1 = show_options('Login', 'Create User', 'Exit')
+
+def home_page():
+  os.system('cls')
   user = None
-  
-  while True:
+  while not user:
+    os.system('cls')
+    print("=" * 25)
+    print("Simple Social Media App!")
+    print("=" * 25)
+    opt1 = show_options('Login', 'Create User', 'Exit\n')
     if opt1 == '1':
-      while True:
-        username = input("Enter your username: ")
-        password = input("Enter your password: ")
-        user = login_user(username, password)
-        
-        if user:
-          os.system('cls')
-          print("Login successful")
-          sleep(2)
-          os.system('cls')
-          print("Which one options below: ")
-          opt2 = show_options("Show my posts", "Show All posts", "Create New Post" ,"Logout")
-          
-          if opt2 == '1':
-            posts = get_posts_by_id(user[0])
-            for post in posts:
-              print(" - ".join(post))
-          elif opt2 == '2':
-            posts = get_posts_all()
-            for post in posts:
-              print(" - ".join(post))
-            print("-" * 50)
-          elif opt2 == '3':
-            ...
-          elif opt2 == '4':
-            print("You have logged out successfully!")
-            break
-          else:
-            print("Invalid option!")
+      os.system('cls')
+      print("=========LOGIN==========")
+      username = input("Enter your username: ")
+      password = input("Enter your password: ")
+      user = login_user(username, password)
+      
+      if not user:
+        print("\nInvalid username or password!\n")
     elif opt1 == '2':
+      os.system('cls')
+      print("=========REGISTER==========")
       username = input("Enter your username: ")
       password = input("Enter your password: ")
       name = input("Enter your name: ")
       created = register_user(username, password, name)  
       if created:
-        print("You have logged in successfully!")
+        print("\nUser created successfully!\n")
       else:
         print("\nInvalid username or password!\n")
     elif opt1 == '3':
-      print("You have logged out successfully!")
       break
     else:
-      print("Invalid option!")    
+      print("Invalid option!")
+  return user     
+    
+def app():
+  user = home_page()
+  user_id = user[0][0]
+  print('\nLogin....')
+  sleep(2)
+  os.system('cls')
+  
+  while user:
+    print("=" * 50)
+    print(f"Hello, {user[0][2]}!")
+    print("\nWhich one options below: ")
+    print("-" * 50)
+    opt2 = show_options('New Post','Show my posts', 'Show All posts', 'Logout')
+    print("=" * 50)
+    
+    if opt2 == '1':
+      print(user[0])
+      comment = input("Enter your comment: ")
+      created = create_post(user_id, comment)
+      
+      if created:
+        print("\nPost created successfully!\n")
+      else:
+        print("\nInvalid comment!\n")
+    elif opt2 == '2':
+      posts = get_posts_by_id(user_id)
+      os.system('cls')
+      for post in posts:
+        print(' - '.join(post))
+    elif opt2 == '3':
+      posts = get_posts_all()
+      os.system('cls')
+      for post in posts:
+        print(' - '.join(post))
+    elif opt2 == '4':
+      user = None
+    else:
+      print("Invalid option!")
     
 if __name__ == "__main__":
   app()
