@@ -1,10 +1,10 @@
 import os
 import hashlib
-path = f'{os.getcwd()}/School'
+path = f'{os.getcwd()}/School/data'
 
-def check_user(user_name:str):
+def check_user(data_name, user_name:str):
   try:
-    with open(f'{path}/teachers.txt', 'r') as file:
+    with open(f'{path}/{data_name}.txt', 'r') as file:
       user_names = [line.split(',')[0].strip() for line in file]
       if user_name in user_names:
         print('User already exist') 
@@ -41,5 +41,7 @@ def hash_password(password:str):
   
     password_hash = hashlib.sha256(password.encode('utf-8')).hexdigest()
     return password_hash
+  
   except TypeError as err:
     print('Data invalid ', err)
+    
