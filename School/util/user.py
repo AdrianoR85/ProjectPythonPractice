@@ -7,22 +7,22 @@ def check_user(data_name, user_name:str):
     with open(f'{path}/{data_name}.txt', 'r') as file:
       user_names = [line.split(',')[0].strip() for line in file]
       if user_name in user_names:
-        print('User already exist') 
+        print('\nUser already exist\n') 
         return True
       return False
   except FileNotFoundError:
-    print('File not found')
+    print('\nFile not found\n')
   except TypeError as err:
-    print('Data invalid ', err)
+    print('\nData invalid ', err)
 
 def user_data_validation(user_name:str, last_name:str):
   try:
     if len(user_name) < 3 or len(last_name) < 3:
-      print('Username or last_name is too short')
+      print('\nUsername or last_name is too short\n')
       return False
     
     if user_name.isdigit() or user_name.isdigit():
-      print('USERNAME or LAST NAME can not be numbers')
+      print('\nUSERNAME or LAST NAME can not be numbers\n')
       return False
     
     return True
@@ -36,7 +36,7 @@ def user_data_validation(user_name:str, last_name:str):
 def hash_password(password:str):
   try:
     if len(password) < 6:
-      print('Password is too short')
+      print('\nPassword is too short\n')
       return False
   
     password_hash = hashlib.sha256(password.encode('utf-8')).hexdigest()

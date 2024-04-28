@@ -11,7 +11,7 @@ def register_teacher(user_name:str, last_name:str, password:str):
     try:
       with open(f'{path}/teachers.txt', 'a') as file:
         file.write(f'{user_name}, {last_name}, {valid_password},\n')
-        print(f'{user_name}, Your registration is successful, go back and log in!')
+        print(f'\n{user_name}, Your registration is successful, go back and log in!\n')
         return True
     except FileNotFoundError as err:
       print('File not found')

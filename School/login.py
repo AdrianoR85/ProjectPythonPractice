@@ -1,6 +1,6 @@
 import hashlib
 from util.user import path
-def teacher_login(user_name, password:str):
+def login(user_name, password:str):
   new_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
   try:
     with open(f'{path}/teachers.txt', 'r') as teachers:
@@ -10,8 +10,8 @@ def teacher_login(user_name, password:str):
         if teacher[0] == user_name:
           striped_string = teacher[2][1:]
           if new_password == striped_string:
-            return teacher
-    return False
+            return True
+    return -1
   
   except FileNotFoundError:
     print('File not found')

@@ -1,2 +1,3 @@
 Triss_M, Merigold, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92,
 Triss_S, Merigold, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92,
+Lara_C, Croft, 23b5c5e0915483302bbd48e555a85f5999f52dbed8c7c7a5809811bba234e0a1,
