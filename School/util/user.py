@@ -44,4 +44,12 @@ def hash_password(password:str):
   
   except TypeError as err:
     print('Data invalid ', err)
-    
+
+def get_student_score():
+  try:
+    with open(f'{path}/students.txt', 'r') as students:
+      return students.read()
+  except FileNotFoundError:
+    print('\nFile not found\n')
+  except TypeError as err:
+    print('\nData invalid ', err)

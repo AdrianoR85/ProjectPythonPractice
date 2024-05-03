@@ -11,6 +11,7 @@ def login(user_name, password:str):
           striped_string = teacher[2][1:]
           if new_password == striped_string:
             return True
+    print('User not found')
     return -1
   
   except FileNotFoundError:
